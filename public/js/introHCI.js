@@ -28,11 +28,20 @@ function addProjectDetails(e) {
 
 	console.log("User clicked on project " + idNumber);
     
-    $.get('/project/'+idNumber, callback);
-    console.log('/project/'+idNumber);
+    $.get('/project/'+idNumber, addProject);
+    console.log('/project/' + idNumber);
 }
 
-function callback(result) {
+function addProject(result) {
     console.log(result);
-    $('.details div').html('foo');
+    //$('.details div').html('foo');
+    console.log($('.details div').length);
+    
+    var projectHTML =
+        '<img src="' + result.image + '"class="detailsImage">' +
+        '<h3>' + result.title + '</h3>' +
+        '<p><small>' + result.date + '</small></p>' +
+        '<p>' + result.summary + '</p>';
+    
+    $('#project' + result.id + ' .details').html(projectHTML);
 }
